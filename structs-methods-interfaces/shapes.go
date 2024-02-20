@@ -1,5 +1,7 @@
 package structsmethodsinterfaces
 
+import "math"
+
 type Shape interface {
 	Area() float64
 }
@@ -14,10 +16,12 @@ type Circle struct {
 }
 
 func (r Rectangle) Area() (area float64) {
+	area = r.height * r.width
 	return
 }
 
 func (c Circle) Area() (area float64) {
+	area = math.Pi * c.radius * c.radius
 	return
 }
 
