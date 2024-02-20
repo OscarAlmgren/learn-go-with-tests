@@ -13,12 +13,15 @@ type Circle struct {
 	radius float64
 }
 
-func Perimeter(r Rectangle) (perimeter float64) {
-	perimeter = 2 * (r.width + r.height)
+func (r Rectangle) Area() (area float64) {
 	return
 }
 
-func Area(r Rectangle) (area float64) {
-	area = r.width * r.height
+func (c Circle) Area() (area float64) {
+	return
+}
+
+func Perimeter(r Rectangle) (perimeter float64) {
+	perimeter = 2 * (r.width + r.height)
 	return
 }
