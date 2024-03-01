@@ -13,6 +13,13 @@ func TestWallet(t *testing.T) {
 		}
 	}
 
+	assertNoError := func(t testing.TB, got error) {
+		t.Helper()
+		if got != nil {
+			t.Fatal("got an error but didn't want one")
+		}
+	}
+
 	// assertError är en funktion inom TestWallet, därav := deklaration.
 	assertError := func(t testing.TB, got, want error) {
 		t.Helper()
@@ -35,12 +42,12 @@ func TestWallet(t *testing.T) {
 
 	})
 
-	t.Run("withdraw", func(t *testing.T) {
+	t.Run("withdraw with funds", func(t *testing.T) {
 		wallet := Wallet{balance: Bitcoin(20)}
-		wallet.Withdraw(Bitcoin(10))
-		want := Bitcoin(10)
+		err := wallet.Withdraw(Bitcoin(10))
 
-		assertBalance(t, wallet, want)
+		assertNoError(t, err)
+		assertBalance(t, wallet, Bitcoin(10))
 	})
 
 	t.Run("withdraw insufficient funds", func(t *testing.T) {
